@@ -29,13 +29,13 @@
                     <a class="btn-active" href="{{ route('user.dashboard') }}"><i class="bi bi-book" style="display: flex;justify-content:center"></i><h3>Dashboard</h3></a>
               </li>
               <li class="nav-item {{'profile' == request()->path() ? 'active' : ''}}" style="display:flex; justify-content:center;">
-                    <a class="btn-active" href="#"><i class="bi bi-person-fill" style="display: flex;justify-content:center"></i><h3>Profile</h3></a>
+                    <a class="btn-active" href="{{ route('user.profile') }}"><i class="bi bi-person-fill" style="display: flex;justify-content:center"></i><h3>Profile</h3></a>
               </li>
               <li class="nav-item {{'notification' == request()->path() ? 'active' : ''}}" style="display:flex; justify-content:center;">
-                    <a class="btn-active" href="#"><i class="bi bi-bell-fill" style="display: flex;justify-content:center"></i><h3>Notification</h3></a>
+                    <a class="btn-active" href="{{ route('user.notification') }}"><i class="bi bi-bell-fill" style="display: flex;justify-content:center"></i><h3>Notification</h3></a>
               </li>
               <li class="nav-item {{'trash' == request()->path() ? 'active' : ''}}" style="display:flex; justify-content:center;">
-                <a class="btn-active" href="#"><i class="bi bi-trash" style="display: flex;justify-content:center"></i><h3>Trash</h3></a>
+                <a class="btn-active" href="{{ route('user.trash') }}"><i class="bi bi-trash" style="display: flex;justify-content:center"></i><h3>Trash</h3></a>
               </li>
             </ul>
         </div>
@@ -171,18 +171,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-subtitle mb-2 text-muted">{{ $publication->department }} , {{ $publication->year }} </h3>
-                        <h1 class="card-title"><a href="#" class="source-title">{{ $publication->source_title }}</a></h1>
-
-
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                          <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                          </div>
-                          <div class="offcanvas-body">
-                            Offcanvas content goes here.
-                          </div>
-                        </div>
+                        <h1 class="card-title">
+                            <a href="#" wire:click="showCard" class="source-title">{{ $publication->source_title }}</a>
+                        </h1>
+                        
+                        <livewire:card-component />
+                        
 
                         
                         <h3 class="card-subtitle mb-2 text-muted">{{ $publication->publisher }}</h3>
@@ -192,7 +186,8 @@
                             })->toArray()) }}
                         </h3>  
                         <p class="card-text">{{ Str::limit($publication->abstract, 300) }}</p>
-                        <h6><a href="{{$publication->pdf_file_name}}" target="_blank">{{$publication->pdf_file_name}}</a></h6>
+                        <h6><a href="{{ route('publications.pdf', ['id' => $publication->id]) }}" target="_blank">View PDF</a>
+                        </h6>
                     </div>
                     <div class="card-footer">
                         <div class="library">
@@ -226,5 +221,5 @@
     </div>
        
     
-       
+    @livewireStyles
 @endsection

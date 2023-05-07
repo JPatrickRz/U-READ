@@ -19,9 +19,6 @@ class MultiForm extends Component
     public $pdf_file;
     public $pdf_file_name;
 
-    public $currentStep = 1;
-    public $totalSteps = 5;
-
 
     public function render()
     {

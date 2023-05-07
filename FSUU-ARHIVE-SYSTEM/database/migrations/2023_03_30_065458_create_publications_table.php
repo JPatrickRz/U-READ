@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('year');
             $table->string('patent_status');
             $table->string('department');
-            $table->string('pdf_file')->nullable();
-            $table->binary('pdf_file_name')->nullable();
+            $table->binary('pdf_file_data')->nullable();
+            $table->string('pdf_file_name', 255)->nullable();
             $table->timestamps();
         });
     }

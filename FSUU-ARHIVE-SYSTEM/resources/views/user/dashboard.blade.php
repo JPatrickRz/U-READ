@@ -13,19 +13,19 @@
                     <a class="btn-active" href="{{ route('user.dashboard') }}"><i class="bi bi-book" style="display: flex;justify-content:center"></i><h3>Dashboard</h3></a>
               </li>
               <li class="nav-item {{'profile' == request()->path() ? 'active' : ''}}" style="display:flex; justify-content:center;">
-                    <a class="btn-active" href="#"><i class="bi bi-person-fill" style="display: flex;justify-content:center"></i><h3>Profile</h3></a>
+                    <a class="btn-active" href="{{ route('user.profile') }}"><i class="bi bi-person-fill" style="display: flex;justify-content:center"></i><h3>Profile</h3></a>
               </li>
               <li class="nav-item {{'notification' == request()->path() ? 'active' : ''}}" style="display:flex; justify-content:center;">
-                    <a class="btn-active" href="#"><i class="bi bi-bell-fill" style="display: flex;justify-content:center"></i><h3>Notification</h3></a>
+                    <a class="btn-active" href="{{ route('user.notification') }}"><i class="bi bi-bell-fill" style="display: flex;justify-content:center"></i><h3>Notification</h3></a>
               </li>
               <li class="nav-item {{'trash' == request()->path() ? 'active' : ''}}" style="display:flex; justify-content:center;">
-                  <a class="btn-active" href="#"><i class="bi bi-trash" style="display: flex;justify-content:center"></i><h3>Trash</h3></a>
+                  <a class="btn-active" href="{{ route('user.trash') }}"><i class="bi bi-trash" style="display: flex;justify-content:center"></i><h3>Trash</h3></a>
             </li>
             </ul>
         </div>
 
         {{-- MY LIBRARY --}}
-        <div class="col-md-2 bg-custom d-flex flex-column align-items-center pt-5" >
+        <div class="col-md-2 bg-custom d-flex flex-column align-items-center pt-5" style="height: 110vh">
             <div class="d-flex align-items-center mt-5">
               <i class="bi bi-book-half me-3" style="font-size: 30px; color: #014161;"></i>
               <h3 class="mt-4 mb-0" style="font-family: 'Outfit', sans-serif; font-weight:800; font-size:22px; color: #014161;">LIBRARY</h3>

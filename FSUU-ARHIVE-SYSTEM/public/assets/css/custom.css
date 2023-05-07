@@ -13,7 +13,7 @@ hr {
   background-color: #ffffff; /* Replace with your desired color */
   margin-top: -75px; 
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5); /* Adjust the values to customize the box shadow */
-  height: 100vh;
+ 
 }
 .bg-customs {
   background-color: #014161; /* Replace with your desired color */
@@ -204,6 +204,12 @@ a.source-title {
 #search-btn {
   margin-left: -9px;
   z-index: 1;
+}
+.cardRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
 }
 
 

@@ -16,8 +16,8 @@ class Publication extends Model
         'year',
         'patent_status',
         'department',
-        'pdf_file',
         'pdf_file_name',
+        'pdf_file_data',
     ];
 
     public function authors()

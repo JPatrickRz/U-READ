@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\UserNotificationController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserTrashController;
 use App\Http\Middleware\Is_Admin;
 
 
@@ -35,8 +38,9 @@ Route::get('auth/google/call-back',[GoogleAuthController::class, 'callbackGoogle
 
 // USER SIDEBAR ROUTE
 Route::get('/dashboard', [UserDashboardController::class, 'dashboard'])->name('user.dashboard');
-
-
+Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
+Route::get('/notification', [UserNotificationController::class, 'notification'])->name('user.notification');
+Route::get('/trash', [UserTrashController::class, 'trash'])->name('user.trash');
 
 // Library Route
 
@@ -50,6 +54,11 @@ Route::get('/admin/upload', [AdminUploadController::class, 'upload'])->name('adm
 
 // Upload Route
 Route::post('/admin/upload', [PublicationController::class, 'store'])->name('publishers.store');
+
+// PDF Route
+Route::get('/publications/{id}/pdf', [PublicationController::class, 'showPdf'])->name('publications.pdf');
+Route::get('/publications/{id}/pdf', [PublicationController::class, 'downloadPDF'])->name('publications.pdf');
+
 
 // Display Route
 Route::get('/publications/{id}', [PublicationController::class, 'show'])->name('publications.show');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\Publication;
 use App\Models\Author;
 use App\Models\Adviser;
@@ -25,13 +26,11 @@ class PublicationController extends Controller
                 // Retrieve the original name of the uploaded file
                 $pdf_file_name = $pdf_file->getClientOriginalName();
         
-                // Get the binary data of the PDF file
-                $pdf_file_data = file_get_contents($pdf_file);
+                // Store the pdf file in the storage disk which is located at the path storage/pdf_files
+                $pdf_file_path = $pdf_file->store('public/pdf_files');
         
-                // Additional processing if needed, e.g., file validation, file storage, etc.
-        
-                // Example: Store the PDF file in a specific location
-                $pdf_file->storeAs('public/pdf', $pdf_file_name);
+                // Get the binary data of the stored file
+                $pdf_file_data = Storage::get($pdf_file_path);
             } else {
                 // Handle invalid file upload
                 return redirect()->back()->withErrors(['pdf_file' => 'Invalid file upload.']);
@@ -40,9 +39,11 @@ class PublicationController extends Controller
             $pdf_file_name = null;
             $pdf_file_data = null;
         }
-
-        // Create the publication
-        $publication = Publication::create([
+        
+        
+    
+       // Create the publication
+        $publication = new Publication([
             'source_title' => $request->input('source_title'),
             'abstract' => $request->input('abstract'),
             'publisher' => $request->input('publisher'),
@@ -50,9 +51,11 @@ class PublicationController extends Controller
             'patent_status' => $request->input('patent_status'),
             'department' => $request->input('department'),
             'pdf_file_name' => $pdf_file_name,
-            'pdf_file_data' => $pdf_file_data, // Store the binary data in the database
+            'pdf_file_data' => $pdf_file_path,
+            
         ]);
-    
+
+        $publication->save();
         // Get the publication ID
         $publicationId = $publication->id;
 
@@ -67,10 +70,12 @@ class PublicationController extends Controller
                 'author_last_name' => $request->input('author_last_name')[$index],
                 'author_suffix' => $request->input('author_suffix')[$index],
             ]);
+
+             // Associate the author with the publication
+            $publication->authors()->save($author);
         }
 
-        // Associate the author with the publication
-        $publication->authors()->save($author);
+       
     
         // Get the publication ID
         $publicationId = $publication->id;
@@ -86,10 +91,10 @@ class PublicationController extends Controller
                 'adviser_last_name' => $request->input('adviser_last_name')[$index],
                 'adviser_suffix' => $request->input('adviser_suffix')[$index],
             ]);
+
+             // Associate the adviser with the publication
+             $publication->advisers()->save($adviser);
         }
-    
-        // Associate the adviser with the publication
-        $publication->advisers()->save($adviser);
     
 
         // Get the publication ID
@@ -106,13 +111,14 @@ class PublicationController extends Controller
                 'panel_last_name' => $request->input('panel_last_name')[$index],
                 'panel_suffix' => $request->input('panel_suffix')[$index],
             ]);
+
+            // Associate the panel with the publication
+             $publication->panels()->save($panel);
         }
-    
-        // Associate the panel with the publication
-        $publication->panels()->save($panel);
     
         return back()->with('info', 'Publication created successfully.');
     }    
+
     public function show($id)
     {
         // Retrieve the publication data from your model based on the $id parameter
@@ -121,6 +127,7 @@ class PublicationController extends Controller
         return view('publications.show', compact('publications'));
     
     }
+    
     public function search(Request $request)
     {
         $query = $request->input('search');
@@ -134,6 +141,44 @@ class PublicationController extends Controller
     
         return view('home', ['publications' => $publications, 'search' => $query]);
     }
+    public function showPdf($id)
+    {
+        $publication = Publication::findOrFail($id);
     
+        if ($publication->pdf_file_data) {
+            $pdf_file_data = $publication->pdf_file_data;
+            $pdf_file_name = $publication->pdf_file_name;
+    
+            $headers = [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . $pdf_file_name . '"',
+            ];
+    
+            return response($pdf_file_data, 200, $headers);
+        } else {
+            return response('PDF file not found.', 404);
+        }
+    }
+    
+    public function downloadPDF($id)
+    {
+        $publication = Publication::findOrFail($id);
+    
+        $pdf_file_data = $publication->pdf_file_data;
+        $pdf_file_name = $publication->pdf_file_name;
+    
+        $headers = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $pdf_file_name . '"',
+        ];
+    
+        return response($pdf_file_data, 200, $headers);
+    }
+    
+    
+    
+
+    
+
      
 }
