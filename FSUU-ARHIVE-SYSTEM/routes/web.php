@@ -57,7 +57,7 @@ Route::post('/admin/upload', [PublicationController::class, 'store'])->name('pub
 
 // PDF Route
 Route::get('/publications/{id}/pdf', [PublicationController::class, 'showPdf'])->name('publications.pdf');
-Route::get('/publications/{id}/pdf', [PublicationController::class, 'downloadPDF'])->name('publications.pdf');
+
 
 
 // Display Route

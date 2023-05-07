@@ -8,6 +8,7 @@ use App\Models\Author;
 use App\Models\Adviser;
 use App\Models\Panel;
 use Illuminate\Http\Request;
+use TCPDF;
 
 class PublicationController extends Controller
 {
@@ -141,17 +142,19 @@ class PublicationController extends Controller
     
         return view('home', ['publications' => $publications, 'search' => $query]);
     }
+    
     public function showPdf($id)
     {
         $publication = Publication::findOrFail($id);
     
-        if ($publication->pdf_file_data) {
-            $pdf_file_data = $publication->pdf_file_data;
-            $pdf_file_name = $publication->pdf_file_name;
+        $pdf_file_path = public_path('pdf/' . $publication->pdf_file_name);
+    
+        if (file_exists($pdf_file_path)) {
+            $pdf_file_data = file_get_contents($pdf_file_path);
     
             $headers = [
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="' . $pdf_file_name . '"',
+                'Content-Disposition' => 'inline; filename="' . $publication->pdf_file_name . '"',
             ];
     
             return response($pdf_file_data, 200, $headers);
@@ -160,6 +163,7 @@ class PublicationController extends Controller
         }
     }
     
+
     public function downloadPDF($id)
     {
         $publication = Publication::findOrFail($id);
