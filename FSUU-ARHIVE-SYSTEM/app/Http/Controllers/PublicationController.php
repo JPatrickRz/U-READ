@@ -8,7 +8,8 @@ use App\Models\Author;
 use App\Models\Adviser;
 use App\Models\Panel;
 use Illuminate\Http\Request;
-use TCPDF;
+
+
 
 class PublicationController extends Controller
 {

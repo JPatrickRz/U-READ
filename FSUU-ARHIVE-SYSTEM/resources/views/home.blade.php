@@ -98,61 +98,60 @@
               {{-- DEPARTMENT FILTER --}}
               
               <div class="container">
-                <h4 style="font-family: 'Outfit', sans-serif; font-weight:500; color:#014161;">DEPARTMENT</h4>
+                    <h4 style="font-family: 'Outfit', sans-serif; font-weight:500; color:#014161;">DEPARTMENT</h4>
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="myCheckbox">
+                        <label class="form-check-label" for="myCheckbox">
+                            Accountancy Program (AP)
+                        </label>
+                </div> 
+                <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="myCheckbox">
+                        <label class="form-check-label" for="myCheckbox">
+                            Arts and Science Program (ASP)
+                        </label>
+                </div>  
+                <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="myCheckbox">
+                        <label class="form-check-label" for="myCheckbox">
+                            Business Administrator Program (BAP)
+                        </label>
+                </div>  
+                <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="myCheckbox">
+                        <label class="form-check-label" for="myCheckbox">
+                            Computer Studies Program(CSP)
+                        </label>
+                </div>  
+                <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="myCheckbox">
+                        <label class="form-check-label" for="myCheckbox">
+                            Criminal Justice Education Program (CJEP)
+                        </label>
+                </div>     
                 <div class="form-check mt-4">
                     <input class="form-check-input" type="checkbox" id="myCheckbox">
                     <label class="form-check-label" for="myCheckbox">
-                        Accountancy Program (AP)
+                        Engineering and Technology Program (ETP)
                     </label>
-              </div> 
-               <div class="form-check mt-4">
+                </div>  
+                <div class="form-check mt-4">
                     <input class="form-check-input" type="checkbox" id="myCheckbox">
                     <label class="form-check-label" for="myCheckbox">
-                        Arts and Science Program (ASP)
+                        Teacher Education Program (TEP)
                     </label>
-              </div>  
-               <div class="form-check mt-4">
+                </div>  
+                <div class="form-check mt-4">
                     <input class="form-check-input" type="checkbox" id="myCheckbox">
                     <label class="form-check-label" for="myCheckbox">
-                        Business Administrator Program (BAP)
+                        Nursing Program (NP)
                     </label>
-              </div>  
-               <div class="form-check mt-4">
-                    <input class="form-check-input" type="checkbox" id="myCheckbox">
-                    <label class="form-check-label" for="myCheckbox">
-                        Computer Studies Program(CSP)
-                    </label>
-              </div>  
-               <div class="form-check mt-4">
-                    <input class="form-check-input" type="checkbox" id="myCheckbox">
-                    <label class="form-check-label" for="myCheckbox">
-                        Criminal Justice Education Program (CJEP)
-                    </label>
-              </div>     
-              <div class="form-check mt-4">
-                  <input class="form-check-input" type="checkbox" id="myCheckbox">
-                  <label class="form-check-label" for="myCheckbox">
-                    Engineering and Technology Program (ETP)
-                  </label>
-              </div>  
-              <div class="form-check mt-4">
-                  <input class="form-check-input" type="checkbox" id="myCheckbox">
-                  <label class="form-check-label" for="myCheckbox">
-                    Teacher Education Program (TEP)
-                  </label>
-              </div>  
-              <div class="form-check mt-4">
-                  <input class="form-check-input" type="checkbox" id="myCheckbox">
-                  <label class="form-check-label" for="myCheckbox">
-                    Nursing Program (NP)
-                  </label>
-              </div>   
-              </div>
+                </div>   
+            </div>
              
         </div>
 
           
-
         {{-- List of Cards  --}}
      
         <div class="col-md-5 mt-3 card-position" style="margin-left: 20px;">
